@@ -1,9 +1,7 @@
 #bonus 1. ability to add more questions via 1a. via easter eggs questions 2a. do not let them add the same 
 #answer if its already in database
 
-#bonus 2. ability to reset answers back to original bank.  2a.via easter egg question
 
-#bonus 3. ability to have eightball print all answers 3a. via easter egg question
 
 
 @stock_answers = [
@@ -28,10 +26,9 @@
     "Outlook not so good",
     "Very doubtful",
 ]
-@stock_answers_clone = @stock_answers
+@stock_answers_clone = @stock_answers.clone
 
 def custom_answers
-    @stock_answers_clone = []
     puts "1. Enter a custom answer"
     puts "2. Return to menu"
 
@@ -39,17 +36,30 @@ def custom_answers
 
     case push_or_return
         when "1"
-            #do something
-        when "2"
+            puts "Enter your custom answer"
+            print "> "
+            
+            @answer_to_push = $stdin.gets.chomp
+
+                if @stock_answers_clone.include? @answer_to_push
+                    puts "answer already exists"
+                    custom_answers
+                else
+                    @stock_answers_clone << @answer_to_push
+                    puts "Answer added!"
+                    custom_answers
+                end
+       when "2"
             secret_menu
         else
             puts "enter a valid selection"
+            custom_answers
     end
 end
 
 
 def custom_reset
-    @stock_answers_clone = @stock_answers
+    @stock_answers_clone = @stock_answers.clone
     puts "\nAnswers reset to stock!\n"
     secret_menu
 end
