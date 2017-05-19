@@ -1,8 +1,3 @@
-#bonus 1. ability to add more questions via 1a. via easter eggs questions 2a. do not let them add the same 
-#answer if its already in database
-
-
-
 
 @stock_answers = [
     "It is certain",
